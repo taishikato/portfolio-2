@@ -3,6 +3,7 @@ import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
+import { SocialIconList } from "@/components/social-icon-list";
 
 const inter = Inter({ subsets: ["latin"] });
 const manrope = Manrope({ subsets: ["latin"] });
@@ -26,7 +27,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <main className="flex min-h-screen flex-col items-center mt-5 max-w-[90%] md:max-w-6xl mx-auto text-secondary-foreground/60">
+            <SocialIconList />
+            {children}
+          </main>
         </ThemeProvider>
       </body>
     </html>
