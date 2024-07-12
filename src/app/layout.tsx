@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import { SocialIconList } from "@/components/social-icon-list";
 import { Footer } from "@/components/footer";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const manrope = Manrope({ subsets: ["latin"] });
 
@@ -34,6 +35,7 @@ export default function RootLayout({
             <Footer />
           </main>
         </ThemeProvider>
+        <GoogleAnalytics gaId="UA-27648393-1" />
       </body>
     </html>
   );
