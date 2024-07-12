@@ -1,7 +1,7 @@
 export const MyWork = () => {
   return (
     <div>
-      <h2 className="text-secondary-foreground w-full border-b pb-3 mb-7">
+      <h2 className="text-secondary-foreground w-full border-b pb-3 mb-7 font-semibold">
         My Work
       </h2>
       <iframe

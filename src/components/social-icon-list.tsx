@@ -35,7 +35,7 @@ export const SocialIconList = () => {
       {list.map((l) => {
         return (
           <a key={l.link} href={l.link} target="_blank">
-            <l.icon className="text-xl hover:text-secondary-foreground/80 transition-colors" />
+            <l.icon className="text-xl text-secondary-foreground/50 hover:text-secondary-foreground/80 transition-colors" />
           </a>
         );
       })}

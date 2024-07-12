@@ -1,9 +1,10 @@
 import { MyWork } from "@/components/my-work";
 import ProfileImage from "../assets/profile.webp";
+import { WorkExperience } from "@/components/work-experience";
 
 export default function Home() {
   return (
-    <div className="space-y-10">
+    <div className="space-y-12">
       <div>
         <img
           src={ProfileImage.src}
@@ -22,6 +23,8 @@ export default function Home() {
       </div>
 
       <MyWork />
+
+      <WorkExperience />
     </div>
   );
 }
