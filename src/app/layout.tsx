@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Manrope } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import { SocialIconList } from "@/components/social-icon-list";
 
-const inter = Inter({ subsets: ["latin"] });
 const manrope = Manrope({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -27,7 +26,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="flex min-h-screen flex-col items-center mt-5 max-w-[90%] md:max-w-6xl mx-auto text-secondary-foreground/60">
+          <main className="flex min-h-screen flex-col mt-5 max-w-[90%] md:max-w-5xl mx-auto text-secondary-foreground/60">
             <SocialIconList />
             {children}
           </main>
