@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
 import "./globals.css";
+import { Manrope } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import { SocialIconList } from "@/components/social-icon-list";
+import { Footer } from "@/components/footer";
 
 const manrope = Manrope({ subsets: ["latin"] });
 
@@ -29,6 +30,7 @@ export default function RootLayout({
           <main className="flex min-h-screen flex-col mt-5 max-w-[90%] md:max-w-5xl mx-auto text-secondary-foreground/60">
             <SocialIconList />
             {children}
+            <Footer />
           </main>
         </ThemeProvider>
       </body>
