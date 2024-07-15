@@ -18,8 +18,16 @@ export default function Home() {
             a fullstack developer and solofounder based in Japan and Canada.
           </span>
           <p>
-            I&apos;ve built and shipped AI/non-AI products (with over 18K
-            users).
+            I&apos;ve built and shipped AI/non-AI products with over 18K users.
+            One of them was ranked as the{" "}
+            <a
+              href="https://www.producthunt.com/products/autorepurpose#autorepurpose"
+              target="_blank"
+              className="text-secondary-foreground underline"
+            >
+              #1 Product of the day on Product Hunt
+            </a>
+            .
           </p>
         </h1>
       </div>

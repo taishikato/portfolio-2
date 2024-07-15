@@ -7,12 +7,14 @@ const list = [
     company: "Semios",
     title: "Full Stack JS Developer (full-time)",
     years: "2020 - 2023",
+    place: "Vancouver",
   },
   {
     icon: YahooIcon.src,
     company: "Yahoo! Japan",
     title: "Software Developer (full-time)",
     years: "2015 - 2019",
+    place: "Tokyo",
   },
 ];
 
@@ -30,7 +32,11 @@ export const WorkExperience = () => {
                 <img src={l.icon} className="rounded-full w-11 grayscale" />
                 <div className="ml-4">
                   <div className="text-base">{l.company}</div>
-                  <div className="text-sm font-normal">{l.title}</div>
+                  <div className="text-sm font-normal flex flex-col md:flex-row md:items-center gap-x-1">
+                    <span>{l.title}</span>
+                    <span className="hidden md:block">-</span>
+                    <span className="text-xs md:text-sm">{l.place}</span>
+                  </div>
                 </div>
               </div>
               <div className="font-normal text-sm">{l.years}</div>
