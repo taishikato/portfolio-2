@@ -11,6 +11,7 @@ export default function Home() {
           src={ProfileImage.src}
           className="w-14 rounded-3xl"
           alt="profile image"
+          loading="eager"
         />
         <h1 className="w-[90%] md:w-2/5 mt-3">
           <span className="mb-5 block">

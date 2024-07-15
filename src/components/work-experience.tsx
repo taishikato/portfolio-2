@@ -29,7 +29,13 @@ export const WorkExperience = () => {
           return (
             <div key={l.company} className="flex justify-between items-center">
               <div className="flex items-center">
-                <img src={l.icon} className="rounded-full w-11 grayscale" />
+                <img
+                  loading="lazy"
+                  src={l.icon}
+                  className="rounded-full w-11 grayscale"
+                  width={44}
+                  height={44}
+                />
                 <div className="ml-4">
                   <div className="text-base">{l.company}</div>
                   <div className="text-sm font-normal flex flex-col md:flex-row md:items-center gap-x-1">
