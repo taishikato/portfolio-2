@@ -13,7 +13,7 @@ export default function Home() {
           alt="profile image"
           loading="eager"
         />
-        <h1 className="w-[90%] md:w-2/5 mt-3">
+        <h1 className="w-[90%] md:w-2/5 mt-3 mb-6">
           <span className="mb-5 block">
             I&apos;m <span className="text-secondary-foreground">Taishi</span>,
             a fullstack developer and solofounder based in Japan and Canada.
@@ -31,6 +31,13 @@ export default function Home() {
             .
           </p>
         </h1>
+
+        <a
+          href="mailto:taishi.k0903@gmail.com"
+          className="text-violet-400 hover:text-violet-600 text-base font-semibold transition-colors"
+        >
+          Hire me
+        </a>
       </div>
 
       <MyWork />
