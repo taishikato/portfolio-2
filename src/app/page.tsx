@@ -2,6 +2,7 @@ import { MyWork } from "@/components/my-work";
 import ProfileImage from "../assets/profile.webp";
 import { WorkExperience } from "@/components/work-experience";
 import { OssContributions } from "@/components/oss-contributions";
+import { FaLocationArrow } from "react-icons/fa";
 
 export default function Home() {
   return (
@@ -34,9 +35,12 @@ export default function Home() {
 
         <a
           href="mailto:taishi.k0903@gmail.com"
-          className="text-violet-400 hover:text-violet-600 text-base font-semibold transition-colors"
+          className="text-violet-400 hover:text-violet-600 group text-base font-semibold transition-colors flex items-center"
         >
           Hire me
+          <span className="transition-transform group-hover:translate-x-1 block ml-2">
+            <FaLocationArrow className="size-3" />
+          </span>
         </a>
       </div>
 
