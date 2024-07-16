@@ -1,5 +1,6 @@
 import SemiosIcon from "../assets/semios.webp";
 import YahooIcon from "../assets/yahoo.webp";
+import BtraxIcon from "../assets/btrax.webp";
 
 const list = [
   {
@@ -15,6 +16,13 @@ const list = [
     title: "Software Developer (full-time)",
     years: "2015 - 2019",
     place: "Tokyo",
+  },
+  {
+    icon: BtraxIcon.src,
+    company: "btrax",
+    title: "Software Developer (intern)",
+    years: "Apr 2013 - Jun 2013",
+    place: "San Francisco",
   },
 ];
 
