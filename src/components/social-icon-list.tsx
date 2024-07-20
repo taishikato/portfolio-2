@@ -31,7 +31,7 @@ const list = [
 
 export const SocialIconList = () => {
   return (
-    <div className="flex items-center gap-x-6 w-full justify-center mb-16">
+    <nav className="flex items-center gap-x-6 w-full justify-center mb-16">
       {list.map((l) => {
         return (
           <a key={l.link} href={l.link} target="_blank">
@@ -39,6 +39,6 @@ export const SocialIconList = () => {
           </a>
         );
       })}
-    </div>
+    </nav>
   );
 };

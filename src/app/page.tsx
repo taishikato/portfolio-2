@@ -6,8 +6,8 @@ import { FaLocationArrow } from "react-icons/fa";
 
 export default function Home() {
   return (
-    <div className="space-y-14">
-      <div>
+    <article className="space-y-14">
+      <section>
         <img
           src={ProfileImage.src}
           className="w-14 rounded-3xl"
@@ -42,13 +42,13 @@ export default function Home() {
             <FaLocationArrow className="size-3" />
           </span>
         </a>
-      </div>
+      </section>
 
       <MyWork />
 
       <WorkExperience />
 
       <OssContributions />
-    </div>
+    </article>
   );
 }

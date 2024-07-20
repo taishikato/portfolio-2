@@ -28,7 +28,7 @@ const list = [
 
 export const WorkExperience = () => {
   return (
-    <div>
+    <section>
       <h2 className="text-secondary-foreground w-full border-b pb-3 mb-7 font-semibold">
         Work Experience
       </h2>
@@ -58,6 +58,6 @@ export const WorkExperience = () => {
           );
         })}
       </div>
-    </div>
+    </section>
   );
 };

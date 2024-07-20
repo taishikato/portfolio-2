@@ -1,6 +1,6 @@
 export const MyWork = () => {
   return (
-    <div>
+    <section>
       <h2 className="text-secondary-foreground w-full border-b pb-3 mb-7 font-semibold">
         My Work
       </h2>
@@ -10,6 +10,6 @@ export const MyWork = () => {
         height="533"
         className="airtable-embed bg-transparent border rounded-lg"
       ></iframe>
-    </div>
+    </section>
   );
 };

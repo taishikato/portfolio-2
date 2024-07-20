@@ -21,7 +21,7 @@ const list = [
 
 export const OssContributions = () => {
   return (
-    <div>
+    <section>
       <h2 className="text-secondary-foreground w-full border-b pb-3 mb-7 font-semibold">
         OSS Contributions
       </h2>
@@ -43,6 +43,6 @@ export const OssContributions = () => {
           );
         })}
       </div>
-    </div>
+    </section>
   );
 };
