@@ -2,6 +2,14 @@ import { Card, CardDescription, CardHeader } from "@/components/ui/card";
 
 const list = [
   {
+    title: "Pull Request #60822 · vercel/next.js",
+    url: "https://github.com/vercel/next.js/pull/60822",
+  },
+  {
+    title: "Pull Request #19009 · supabase/supabase",
+    url: "https://github.com/supabase/supabase/pull/19009",
+  },
+  {
     title: "Pull Request #340 · modal-labs/modal-examples",
     url: "https://github.com/modal-labs/modal-examples/pull/340",
   },
