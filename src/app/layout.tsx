@@ -6,6 +6,10 @@ import { cn } from "@/lib/utils";
 import { SocialIconList } from "@/components/social-icon-list";
 import { Footer } from "@/components/footer";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { WorkExperience } from "@/components/work-experience";
+import { OssContributions } from "@/components/oss-contributions";
+import { FaLocationArrow } from "react-icons/fa";
+import ProfileImage from "../assets/profile.webp";
 
 const manrope = Manrope({ subsets: ["latin"] });
 
@@ -31,7 +35,53 @@ export default function RootLayout({
         >
           <main className="flex min-h-screen flex-col mt-5 max-w-[90%] md:max-w-5xl mx-auto text-secondary-foreground/60">
             <SocialIconList />
-            {children}
+
+            <article className="space-y-14">
+              <section>
+                <img
+                  src={ProfileImage.src}
+                  className="w-14 rounded-3xl"
+                  alt="profile image"
+                  loading="eager"
+                />
+                <h1 className="w-[90%] md:w-2/5 mt-3 mb-6">
+                  <span className="mb-5 block">
+                    I&apos;m{" "}
+                    <span className="text-secondary-foreground">Taishi</span>, a
+                    fullstack developer and solofounder based in Japan and
+                    Canada.
+                  </span>
+                  <p>
+                    I&apos;ve built and shipped AI/non-AI products with over 18K
+                    users. One of them was ranked as the{" "}
+                    <a
+                      href="https://www.producthunt.com/products/autorepurpose#autorepurpose"
+                      target="_blank"
+                      className="text-secondary-foreground underline"
+                    >
+                      #1 Product of the day on Product Hunt
+                    </a>
+                    .
+                  </p>
+                </h1>
+
+                <a
+                  href="mailto:taishi.k0903@gmail.com"
+                  className="text-violet-400 hover:text-violet-600 group text-base font-semibold transition-colors flex items-center"
+                >
+                  Hire me
+                  <span className="transition-transform group-hover:translate-x-1 block ml-2">
+                    <FaLocationArrow className="size-3" />
+                  </span>
+                </a>
+              </section>
+
+              {children}
+
+              <WorkExperience />
+
+              <OssContributions />
+            </article>
             <Footer />
           </main>
         </ThemeProvider>
