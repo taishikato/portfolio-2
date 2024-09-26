@@ -31,7 +31,7 @@ const list = [
 
 export const SocialIconList = () => {
   return (
-    <nav className="flex items-center gap-x-6 w-full justify-center mb-16">
+    <nav className="inline-flex items-center gap-x-6 w-[300px] mx-auto rounded-3xl justify-center mb-16 py-5 sticky top-5 bg-background/75 backdrop-blur">
       {list.map((l) => {
         return (
           <a key={l.link} href={l.link} target="_blank">
