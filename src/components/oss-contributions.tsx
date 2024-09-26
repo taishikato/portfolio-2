@@ -2,6 +2,10 @@ import { Card, CardDescription, CardHeader } from "@/components/ui/card";
 
 const list = [
   {
+    title: "Pull Request #30 · ueberdosis/tiptap-docs",
+    url: "https://github.com/ueberdosis/tiptap-docs/pull/30",
+  },
+  {
     title: "Pull Request #60822 · vercel/next.js",
     url: "https://github.com/vercel/next.js/pull/60822",
   },
