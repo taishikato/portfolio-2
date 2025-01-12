@@ -1,8 +1,16 @@
+import WhisperitIcon from "../assets/whisperit.webp";
 import SemiosIcon from "../assets/semios.webp";
 import YahooIcon from "../assets/yahoo.webp";
 import BtraxIcon from "../assets/btrax.webp";
 
 const list = [
+  {
+    icon: WhisperitIcon.src,
+    company: "Whisperit",
+    title: "Full Stack Developer (freelance)",
+    years: "Aug 2024 - Jan 2025",
+    place: "Switzerland (Remote)",
+  },
   {
     icon: SemiosIcon.src,
     company: "Semios",
@@ -37,12 +45,14 @@ export const WorkExperience = () => {
           return (
             <div key={l.company} className="flex justify-between items-center">
               <div className="flex items-center">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   loading="lazy"
                   src={l.icon}
                   className="rounded-full w-11 grayscale"
                   width={44}
                   height={44}
+                  alt={l.company}
                 />
                 <div className="ml-4">
                   <div className="text-base">{l.company}</div>
