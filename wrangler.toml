@@ -1,0 +1,2 @@
+[build.upload]
+node_version = "20"  # または "18.18.0"
