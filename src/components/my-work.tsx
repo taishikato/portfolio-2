@@ -24,36 +24,30 @@ export const MyWork = () => {
       <div className="mb-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div className="rounded-lg overflow-hidden border bg-card">
-            <a
-              href="https://www.formatmypost.com?src=portfolio"
-              target="_blank"
-            >
+            <a href="https://www.supavec.com" target="_blank">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/formatmypost.png"
-                alt="LinkedIn Text Formatter"
+                src="/supavec.png"
+                alt="Supavec"
                 className="w-full h-full object-cover"
               />
             </a>
           </div>
           <div className="col-span-2 flex flex-col justify-center">
-            <h3 className="text-xl sm:text-2xl font-bold mb-4">
-              LinkedIn Text Formatter
-            </h3>
+            <h3 className="text-xl sm:text-2xl font-bold mb-4">Supavec</h3>
             <p className="text-base sm:text-lg text-muted-foreground mb-4">
-              Transform your LinkedIn content with beautiful formatting. Stand
-              out from the crowd with <span className="font-bold">bold</span>,{" "}
-              <span className="italic">italic</span> and other custom text
-              styles.
+              The open-source alternative to Carbon.ai. Build powerful RAG
+              applications with any data source, at any scale.
             </p>
             <a
-              href="https://www.formatmypost.com?src=portfolio"
+              href="https://www.supavec.com"
               target="_blank"
               className={cn(
                 buttonVariants({ variant: "link" }),
                 "text-primary justify-start p-0"
               )}
             >
-              formatmypost.com →
+              supavec.com →
             </a>
           </div>
         </div>
