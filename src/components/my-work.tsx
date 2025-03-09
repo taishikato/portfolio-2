@@ -5,18 +5,24 @@ import { buttonVariants } from "@/components/ui/button";
 export const MyWork = () => {
   return (
     <section>
-      <div className="flex w-full">
+      <div className="flex justify-start border-b w-full pb-3 mb-7 gap-x-3">
         <Link
           href="/"
-          className="text-secondary-foreground border-b pb-3 mb-7 font-semibold w-[100px]"
+          className="text-secondary-foreground font-semibold pr-3 justify-start"
         >
           My Work
         </Link>
         <Link
           href="/stack"
-          className="text-secondary-foreground/60 border-b pb-3 mb-7 font-semibold w-full"
+          className="text-secondary-foreground/60 font-semibold pr-3 justify-start"
         >
           Stack
+        </Link>
+        <Link
+          href="/blog"
+          className="text-secondary-foreground/60 font-semibold"
+        >
+          Blog
         </Link>
       </div>
 
