@@ -13,9 +13,11 @@ import {
 interface BlogPost {
   slug: string;
   title: string;
-  date: string;
   excerpt: string;
   author?: string;
+  created_at: string;
+  updated_at?: string;
+  displayDate: string;
 }
 
 function getBlogPosts(): BlogPost[] {
@@ -36,15 +38,27 @@ function getBlogPosts(): BlogPost[] {
         const fileContents = fs.readFileSync(fullPath, "utf8");
         const { data } = matter(fileContents);
 
+        // Use created_at as the base date
+        const created_at = data.created_at || new Date().toISOString();
+        // Use updated_at if available, otherwise use created_at
+        const updated_at = data.updated_at || created_at;
+        // Use updated_at for display if available, otherwise use created_at
+        const displayDate = updated_at;
+
         return {
           slug,
           title: data.title || "Untitled Post",
-          date: data.date || new Date().toISOString(),
-          excerpt: data.excerpt || "",
+          excerpt: data.excerpt || data.description || "",
           author: data.author,
+          created_at,
+          updated_at,
+          displayDate,
         };
       })
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      .sort(
+        (a, b) =>
+          new Date(b.displayDate).getTime() - new Date(a.displayDate).getTime()
+      );
 
     return posts;
   } catch (error) {
@@ -75,7 +89,7 @@ export default function BlogPage() {
             <CardHeader>
               <CardTitle className="text-xl">{post.title}</CardTitle>
               <CardDescription>
-                {new Date(post.date).toLocaleDateString("en-US", {
+                {new Date(post.displayDate).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
@@ -86,6 +100,26 @@ export default function BlogPage() {
             {post.excerpt && (
               <CardContent>
                 <p className="text-secondary-foreground/60">{post.excerpt}</p>
+                <div className="mt-4 text-xs text-secondary-foreground/40 flex flex-wrap gap-x-4">
+                  <span>
+                    Created:{" "}
+                    {new Date(post.created_at).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </span>
+                  {post.updated_at && post.updated_at !== post.created_at && (
+                    <span>
+                      Updated:{" "}
+                      {new Date(post.updated_at).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })}
+                    </span>
+                  )}
+                </div>
               </CardContent>
             )}
           </Card>

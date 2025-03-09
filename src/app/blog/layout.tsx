@@ -32,15 +32,6 @@ export default function BlogLayout({
           Blog
         </Link>
       </div>
-      <div className="mb-8">
-        <Link
-          href="/"
-          className="inline-flex items-center text-sm font-medium text-primary hover:underline"
-        >
-          <ChevronLeft className="mr-1 h-4 w-4" />
-          Back to Home
-        </Link>
-      </div>
 
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-secondary-foreground mb-4">

@@ -24,13 +24,23 @@ function getBlogPost(slug: string) {
   try {
     const fileContents = fs.readFileSync(fullPath, "utf8");
     const { data, content } = matter(fileContents);
+
+    // Use created_at as the base date
+    const created_at = data.created_at || new Date().toISOString();
+    // Use updated_at if available, otherwise use created_at
+    const updated_at = data.updated_at || created_at;
+    // Use updated_at for display if available, otherwise use created_at
+    const displayDate = updated_at;
+
     return {
       slug,
       title: data.title || "Untitled Post",
-      date: data.date || new Date().toISOString(),
-      excerpt: data.excerpt || "",
+      displayDate,
+      excerpt: data.excerpt || data.description || "",
       author: data.author || "Anonymous",
       content,
+      created_at,
+      updated_at,
     };
   } catch (error) {
     console.error(`Error reading blog post ${slug}:`, error);
@@ -51,7 +61,7 @@ export default async function Page({
   }
 
   return (
-    <article className="max-w-3xl mx-auto">
+    <article className="mx-auto">
       <div className="mb-6">
         <Link
           href="/blog"
@@ -62,20 +72,33 @@ export default async function Page({
         </Link>
       </div>
       <header className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">{post.title}</h1>
-        <div className="text-gray-500 dark:text-gray-400 mb-4">
-          {new Date(post.date).toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })}
-          {post.author && ` • ${post.author}`}
-        </div>
+        <h1 className="text-3xl font-bold mb-2 text-secondary-foreground">
+          {post.title}
+        </h1>
+
         {post.excerpt && (
-          <p className="text-xl text-gray-600 dark:text-gray-300 italic">
-            {post.excerpt}
-          </p>
+          <p className="text-xl text-muted-foreground italic">{post.excerpt}</p>
         )}
+        <div className="text-sm text-gray-500 dark:text-gray-400 mt-4 flex flex-wrap gap-x-4">
+          <span>
+            Created:{" "}
+            {new Date(post.created_at).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })}
+          </span>
+          {post.updated_at && post.updated_at !== post.created_at && (
+            <span>
+              Updated:{" "}
+              {new Date(post.updated_at).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              })}
+            </span>
+          )}
+        </div>
       </header>
 
       <div className="prose prose-lg dark:prose-invert max-w-none">
@@ -142,6 +165,14 @@ export async function generateMetadata({
     description: post.excerpt,
     alternates: {
       canonical: `/blog/${post.slug}`,
+    },
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      type: "article",
+      publishedTime: post.created_at,
+      modifiedTime: post.updated_at,
+      authors: post.author ? [post.author] : undefined,
     },
   };
 }

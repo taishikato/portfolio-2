@@ -1,0 +1,219 @@
+---
+title: "My first impression of Supabase - The better version of Firebase!?"
+description: "A comparison between Supabase and Firebase, highlighting the key features and benefits of Supabase."
+tags: ["supabase", "firebase", "postgresql", "authentication", "database"]
+image: "https://dev-to-uploads.s3.amazonaws.com/uploads/articles/244wzn2n8a607u52djii.jpg"
+created_at: "2021-02-22T14:32:45Z"
+updated_at: "2021-02-26T09:18:27Z"
+---
+
+<Image 
+  src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/244wzn2n8a607u52djii.jpg" 
+  alt="Supabase" 
+  width={800} 
+  height={400} 
+/>
+
+## What is Supabase!?
+
+On the website, it says **The Open Source Firebase Alternative**
+
+[The Open Source Alternative to Firebase. | The Open Source Firebase Alternative | Supabase](https://supabase.io/)
+
+It has Authentication, Database, storage(coming soon), and function(coming soon) just like Firebase does.
+
+I converted my Firebase project into Supabase one and I am gonna write down my impression of it ✍️
+
+## Authentication
+
+The authentication feature of Supabase is as easy and handy as Firebase.
+
+We can sign up with the third parties too.
+
+* Google
+* Github
+* Gitlab
+* Azure
+* Facebook
+* Bitbucket
+
+I tried with GitHub and the procedure of setting is the same as Firebase.
+
+We have to create a GitHub app and put `App Client Id`, `secret` and call back URL.
+
+<Image 
+  src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/f2w8eydrcnvmujjt5x6d.png" 
+  alt="GitHub settings" 
+  width={700} 
+  height={400} 
+/>
+
+Supabase takes care of the call back URL ✌️
+
+```
+https://<your-project>.supabase.co/auth/v1/callback
+```
+
+If you want users to sign up/sign in with a GitHub account, you can simply put the code below.
+
+```typescript
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY)
+
+const handleSignUp = async () => {
+  const { user, session, error } = await supabase.auth.signIn({
+    // provider can be 'github', 'google', 'gitlab', or 'bitbucket'
+    provider: 'github',
+  })
+}
+```
+
+Firebase's Authentication feature is very easy to use and so convenient.
+What I am impressed with is that Supabase's Authentication feature has the same level as Firebase's.
+
+This is really amazing.
+
+## Database
+
+I bet many of you have wished that Firebase has a relational database, not No SQL.
+
+And Supabase comes with PostgreSQL!!
+I think this is the biggest difference between Firebase and Supabase.
+
+You can execute complex queries.
+
+Firebase has Database but that's a NO SQL (Firestore) which is not good at fetching data with complex queries.
+
+I have been waiting for the product that is like Firebase with RDB, thus Supabase is my ideal 😻
+
+If you want to save a user's data on a database every time a user signs up, you can create a function and trigger it!
+
+1. Create the `public.user` table
+
+```sql
+create table users (
+  id uuid references auth.users not null primary key,
+  email text
+);
+```
+
+2. Create the function
+
+```sql
+create or replace function public.handle_new_user() 
+returns trigger as $$
+begin
+  insert into public.users (id, email)
+  values (new.id, new.email);
+  return new;
+end;
+$$ language plpgsql security definer;
+```
+
+3. Trigger the function
+
+```sql
+create trigger on_auth_user_created
+  after insert on auth.users
+  for each row execute procedure public.handle_new_user();
+```
+
+Reference: [Supabase GitHub Issue #563](https://github.com/supabase/supabase/issues/563#issuecomment-772954907)
+
+As a result, `auth.users`(that Supabase automatically creates and not accessible for the public)  and `publis.users` (that you created with the SQL!) have the user information.
+
+<Image 
+  src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/rxr70sftyn7xl2n53ubk.png" 
+  alt="public.users table" 
+  width={700} 
+  height={300} 
+/>
+<Caption>public.users</Caption>
+
+<Image 
+  src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/alxmhvbp61bsmfjefbz9.png" 
+  alt="auth.users table" 
+  width={700} 
+  height={300} 
+/>
+<Caption>auth.users</Caption>
+
+### Rules for DB
+
+Firestore has a rule functionality.
+
+I use it to restrict database manipulation.
+
+```
+allow write: if request.auth.uid == userId;
+```
+
+With Supabase, we can do the same thing with [Policies](https://supabase.io/docs/guides/auth#policies).
+You can create politics from a dashboard or with SQL.
+
+```sql
+create policy "Individuals can update their own data." on users for
+    update using (auth.uid() = id);
+```
+
+Now my `users` table has one policy.
+
+<Image 
+  src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ejtc3sg203fq2z4amco6.png" 
+  alt="policy" 
+  width={700} 
+  height={300} 
+/>
+
+Make sure the `users` table is locked (Row Level Security is on).
+
+<Image 
+  src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3g7a0s5r9drrlojv8d6s.png" 
+  alt="RLS is on" 
+  width={700} 
+  height={300} 
+/>
+
+### Wanna use a complicated query?
+
+Of curse, you can.
+
+Because of security risk, you can't use some type of query with [Supabase's npm library](https://www.npmjs.com/package/@supabase/supabase-js).
+But just same as normal PostgreSQL, you can create a view and use it from the front-end.
+
+**Create a view**
+
+```sql
+CREATE VIEW public.events_by_month AS
+SELECT to_char(generate_series(event_months.min, event_months.max, '1 month'), 'Mon-YY') AS months
+FROM (
+  SELECT
+    date_trunc('month', min(start_date)) AS min,
+    date_trunc('month', max(start_date)) AS max
+  FROM events
+) event_months
+```
+
+**Use the view**
+
+```typescript
+const response = await supabase
+    .from('events_by_month')
+    .select('*')
+```
+
+I used the view feature to execute the query with the join clause and it worked 🤩
+
+Reference: [Supabase GitHub Issue #190](https://github.com/supabase/supabase/issues/190#issuecomment-689591527)
+
+## Summary
+
+When compared to Firebase, Supabase offers the same ease of use as Firebase. This is great.
+In addition to that, you can use Relational Database.
+
+In my case, I wanted to create a Tinder-like app and it's easy to imagine that the RDB feature is essential for data fetching. And I just went for Supabase 🚀
+
+It's not hard for Supabase to become a must-have for my app development.
+
+If you are a developer who uses Firebase a lot, and you need a relational database, Supabase will surely help you!
