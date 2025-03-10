@@ -1,0 +1,136 @@
+---
+title: "Supabase Just Got More Powerful: Queue, Cron, and Background Tasks in Edge Functions"
+description: "Supabase just released a new feature that allows you to run background tasks in Edge Functions. This is a game-changer for many use cases, including queueing, scheduling, and background processing."
+tags: ["supabase", "edge-functions", "queue", "cron", "background-tasks"]
+image: "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F113hlw0wun50p6mizw8a.png"
+created_at: "2024-12-15T09:47:23Z"
+updated_at: "2024-12-18T14:32:45Z"
+---
+
+<blockquote class="twitter-tweet" data-lang="en" data-theme="dark"><p lang="en" dir="ltr">.<a href="https://twitter.com/supabase?ref_src=twsrc%5Etfw">@supabase</a> eats the backend</p>&mdash; Taishi 🇯🇵🇨🇦 (@taishik_) <a href="https://twitter.com/taishik_/status/1865405946543173752?ref_src=twsrc%5Etfw">December 7, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+This was my first reaction when Supabase [announced](https://supabase.com/launch-week) their new Queue, Cron and Background Tasks in an Edge Function features.
+Let me show you why this is such a big deal.
+
+### The Old World: Juggling Multiple Services
+
+Picture this: You're building an (AI) app that needs to handle long-running processes, like AI-powered audio transcription. Until now, you had to piece together a puzzle of different services:
+
+- Queue management with Bull or Trigger.dev
+- A separate hosting platform for your background jobs (ex: Render, Railway)
+- Redis for job state management
+- And of course, Supabase for your main database
+
+I experienced this while building [AutoRepurpose AI](https://www.autorepurpose.io/) - a tool that transforms YouTube videos into engaging social media content. The process involves:
+
+1. Extracting video subtitles
+2. Creating and storing embeddings in Supabase (PostgreSQL)
+3. Generating tailored social posts using these embeddings
+
+For these tasks, I had to set up Bull on a Node.js instance hosted on [Railway](https://railway.app/), plus Redis for managing the background processes.
+
+![Previous Architecture with Multiple Services](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/hgz3d8dflqx8k32kwwh2.png)
+
+### The New World: Supabase Queue Changes Everything
+
+Now, everything lives under one roof. No more context switching between services. No more managing multiple platforms. Just pure, streamlined efficiency.
+
+
+![New Simplified Architecture with Supabase](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/l5bnjwl7p46jhplmi5kt.png)
+
+Here's all you need to implement background processing with Supabase:
+1. Add items to your queue
+2. Create an edge function to process queued items
+3. Set up a cron job to trigger the processing
+
+Let's see how this looks in code ✨:
+
+
+**Add a queue item: React component (Next.js)**
+```typescript
+const supabase = createClient<Database>(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  { db: { schema: "pgmq_public" } }
+);
+
+const sendToQueue = async () => {
+  await supabase.rpc("send", {
+    queue_name: "ai-background-job",
+    message: { userId, videoId },
+  });
+};
+
+return <button onClick={sendToQueue}>Create a new project</button>
+```
+
+
+**ai-process edge function (Supabase Edge Functions)**
+```typescript
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.47.7";
+import process from "node:process";
+import type { Database } from "../supabase.ts";
+
+const supabase = createClient<Database>(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_ANON_KEY!,
+);
+
+const supabasePgmqSchema = createClient<Database>(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_ANON_KEY!,
+  { db: { schema: "pgmq_public" } },
+);
+
+Deno.serve(async (req) => {
+  const queueToProcess = await supabasePgmqSchema.rpc("pop", {
+    queue_name: "ai-background-job",
+  });
+
+  if (
+    queueToProcess.error || !queueToProcess.data ||
+    !Array.isArray(queueToProcess.data)
+  ) {
+    return new Response(
+      JSON.stringify({ success: false }),
+      { headers: { "Content-Type": "application/json" }, status: 500 },
+    );
+  }
+
+  const { userId, videoId } = queueToProcess.data[0].message as {
+    userId: string;
+    videoId: string;
+  };
+
+  // Fetch the transcription of the video, generate social posts,
+  // and save them in the database in the background
+  EdgeRuntime.waitUntil(processAIStuff({ userId, videoId }));
+
+  return new Response(
+    JSON.stringify({ success: true }),
+    { headers: { "Content-Type": "application/json" } },
+  );
+});
+```
+
+**Set up a cron job**
+
+The new cron interface is quite straightforward. Just a few clicks in the dashboard, and you're done:
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/eeqrxyr8hyr99u5m8fvm.png)
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/60vzp42hwhz4c8cf9efz.png)
+
+### The Complete Backend Package
+
+Supabase now offers everything you need in one platform:
+
+- Queuing system
+- Simple, powerful cron jobs
+- Edge Functions with serverless computing and background task capabilities
+- authentication
+- PostgreSQL database with superpowers
+
+They didn't just add a missing piece - they completed the backend puzzle. As developers, we can now focus on building features instead of managing infrastructure.
+
+Supabase truly has become the backend that eats backends! ⚡️
