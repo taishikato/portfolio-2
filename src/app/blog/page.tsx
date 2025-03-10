@@ -89,18 +89,7 @@ export default function BlogPage() {
             <CardHeader>
               <CardTitle className="text-xl">{post.title}</CardTitle>
               <CardDescription>
-                {new Date(post.displayDate).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-                {post.author && ` • ${post.author}`}
-              </CardDescription>
-            </CardHeader>
-            {post.excerpt && (
-              <CardContent>
-                <p className="text-secondary-foreground/60">{post.excerpt}</p>
-                <div className="mt-4 text-xs text-secondary-foreground/40 flex flex-wrap gap-x-4">
+                <div className="flex flex-wrap gap-x-4">
                   <span>
                     Created:{" "}
                     {new Date(post.created_at).toLocaleDateString("en-US", {
@@ -120,6 +109,12 @@ export default function BlogPage() {
                     </span>
                   )}
                 </div>
+                {post.author && ` • ${post.author}`}
+              </CardDescription>
+            </CardHeader>
+            {post.excerpt && (
+              <CardContent>
+                <p className="text-secondary-foreground/60">{post.excerpt}</p>
               </CardContent>
             )}
           </Card>
