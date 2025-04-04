@@ -10,6 +10,7 @@ import { WorkExperience } from "@/components/work-experience";
 import { OssContributions } from "@/components/oss-contributions";
 import { FaLocationArrow } from "react-icons/fa";
 import ProfileImage from "../assets/profile.webp";
+import Script from "next/script";
 
 const manrope = Manrope({ subsets: ["latin"] });
 
@@ -33,6 +34,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Script
+            async
+            defer
+            src="https://ai-citations-web.vercel.app/api/tracker"
+          />
           <main className="flex min-h-screen flex-col mt-5 max-w-[90%] md:max-w-5xl mx-auto text-secondary-foreground/60">
             <SocialIconList />
 
