@@ -11,6 +11,7 @@ import { OssContributions } from "@/components/oss-contributions";
 import { FaLocationArrow } from "react-icons/fa";
 import ProfileImage from "../assets/profile.webp";
 import Script from "next/script";
+import { HackathonWins } from "@/components/hackathon-wins";
 
 const manrope = Manrope({ subsets: ["latin"] });
 
@@ -85,6 +86,8 @@ export default function RootLayout({
               {children}
 
               <WorkExperience />
+
+              <HackathonWins />
 
               <OssContributions />
             </article>
