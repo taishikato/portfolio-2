@@ -1,4 +1,3 @@
-import { FaTrophy } from "react-icons/fa";
 import { Card, CardDescription, CardHeader } from "@/components/ui/card";
 
 interface HackathonWin {
@@ -33,8 +32,7 @@ const hackathonWins: HackathonWin[] = [
 export function HackathonWins() {
   return (
     <section className="space-y-6">
-      <h2 className="flex items-center gap-2 text-secondary-foreground w-full border-b pb-3 mb-7 font-semibold">
-        <FaTrophy className="text-yellow-500" />
+      <h2 className="text-secondary-foreground w-full border-b pb-3 mb-7 font-semibold">
         Hackathon Wins
       </h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

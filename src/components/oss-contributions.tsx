@@ -1,5 +1,4 @@
 import { Card, CardDescription, CardHeader } from "@/components/ui/card";
-import { FaGithub } from "react-icons/fa";
 
 const list = [
   {
@@ -35,8 +34,7 @@ const list = [
 export const OssContributions = () => {
   return (
     <section>
-      <h2 className="flex items-center gap-2 text-secondary-foreground w-full border-b pb-3 mb-7 font-semibold">
-        <FaGithub />
+      <h2 className="text-secondary-foreground w-full border-b pb-3 mb-7 font-semibold">
         OSS Contributions
       </h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

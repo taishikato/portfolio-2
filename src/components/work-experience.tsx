@@ -2,7 +2,6 @@ import WhisperitIcon from "../assets/whisperit.webp";
 import SemiosIcon from "../assets/semios.webp";
 import YahooIcon from "../assets/yahoo.webp";
 import BtraxIcon from "../assets/btrax.webp";
-import { FaBriefcase } from "react-icons/fa";
 
 const list = [
   {
@@ -38,8 +37,7 @@ const list = [
 export const WorkExperience = () => {
   return (
     <section>
-      <h2 className="flex items-center gap-2 text-secondary-foreground w-full border-b pb-3 mb-7 font-semibold">
-        <FaBriefcase className="text-amber-800" />
+      <h2 className="text-secondary-foreground w-full border-b pb-3 mb-7 font-semibold">
         Work Experience
       </h2>
       <div className="space-y-4">
