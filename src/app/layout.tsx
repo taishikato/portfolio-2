@@ -60,9 +60,9 @@ export default function RootLayout({
                   </span>
                   <p>
                     I&apos;ve built and shipped AI/non-AI products with over 18K
-                    users. One of them was ranked as the{" "}
+                    users. Two of them were ranked as the{" "}
                     <a
-                      href="https://www.producthunt.com/products/autorepurpose#autorepurpose"
+                      href="https://www.producthunt.com/products/supavec#supavec"
                       target="_blank"
                       className="text-secondary-foreground underline"
                     >
