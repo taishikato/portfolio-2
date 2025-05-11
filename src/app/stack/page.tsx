@@ -4,8 +4,14 @@ import imageAer from "../../assets/stack/aer.webp";
 import imagemacbookAir from "../../assets/stack/mackbook-air.png";
 import imageAirpodsPro2 from "../../assets/stack/airpods-pro2.webp";
 import imageAppleWatch6 from "../../assets/stack/apple-watch-6.webp";
+import imageChromeIndustries from "../../assets/stack/chrome-industries.webp";
 
 const stacks = [
+  {
+    title: "CTZ 24L MESSENGER meanswhile edition",
+    image: imageChromeIndustries,
+    link: "https://www.chromeindustries.jp/products/ctz-24l-messenger-meanswhile-edition",
+  },
   {
     title: "Travel Pack 3 Small X-Pac",
     image: imageAer,
@@ -52,15 +58,12 @@ export default function StackPage() {
         </Link>
       </div>
 
-      <ul className="flex gap-5 flex-wrap">
+      <ul className="flex flex-col md:flex-row gap-5 flex-wrap">
         {stacks.map((stack) => {
           const { title, image, link } = stack;
 
           return (
-            <li
-              key={stack.title}
-              className="w-1/2 max-w-1/2 flex-1 md:w-full md:max-w-[300px]"
-            >
+            <li key={stack.title} className="flex-1 md:max-w-[300px]">
               <a href={link} target="_blank">
                 <img
                   src={image.src}
