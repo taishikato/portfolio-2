@@ -30,6 +30,37 @@ export const MyWork = () => {
       <div className="mb-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div className="rounded-lg overflow-hidden border bg-card">
+            <a href="https://www.wintechjobs.com" target="_blank">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/wintechjobs.png"
+                alt="WintechJobs"
+                className="w-full h-full object-cover"
+              />
+            </a>
+          </div>
+          <div className="col-span-2 flex flex-col justify-center">
+            <h3 className="text-xl sm:text-2xl font-bold mb-4">WinTechJobs</h3>
+            <p className="text-base sm:text-lg text-muted-foreground mb-4">
+              WinTechJobs helps you land your dream tech job. Analyze your
+              resume against job descriptions, beat ATS systems, and make your
+              application interview-ready.
+            </p>
+            <a
+              href="https://www.wintechjobs.com"
+              target="_blank"
+              className={cn(
+                buttonVariants({ variant: "link" }),
+                "text-primary justify-start p-0"
+              )}
+            >
+              wintechjobs.com →
+            </a>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          <div className="rounded-lg overflow-hidden border bg-card">
             <a href="https://www.supavec.com" target="_blank">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
