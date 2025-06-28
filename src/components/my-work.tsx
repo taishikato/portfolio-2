@@ -42,8 +42,8 @@ export const MyWork = () => {
           <div className="col-span-2 flex flex-col justify-center">
             <h3 className="text-xl sm:text-2xl font-bold mb-4">Supavec</h3>
             <p className="text-base sm:text-lg text-muted-foreground mb-4">
-              The open-source alternative to Carbon.ai. Build powerful RAG
-              applications with any data source, at any scale.
+              OSS RAG as a Service - spin up vector search + chat API in &lt;5
+              min. 630▲ Product Hunt, 620⭐ GitHub.
             </p>
             <a
               href="https://www.supavec.com"
@@ -58,6 +58,101 @@ export const MyWork = () => {
           </div>
         </div>
       </div>
+
+      {/* AI Tooling & Infrastructure Section */}
+      <section id="ai-tools" className="mb-8">
+        <h2 className="text-xl font-semibold mb-6">
+          AI Tooling & Infrastructure
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Supavec Card */}
+          <div className="rounded-2xl shadow-md border bg-card p-6 flex flex-col gap-3">
+            <div className="flex flex-col gap-2">
+              <h3 className="font-semibold">
+                <a
+                  href="https://www.supavec.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline"
+                >
+                  Supavec
+                </a>
+              </h3>
+              <div className="flex flex-wrap gap-1">
+                <span className="rounded-full bg-gray-100 dark:bg-gray-800 px-2 py-0.5 text-xs">
+                  #RAG
+                </span>
+                <span className="rounded-full bg-gray-100 dark:bg-gray-800 px-2 py-0.5 text-xs">
+                  #Supabase
+                </span>
+                <span className="rounded-full bg-gray-100 dark:bg-gray-800 px-2 py-0.5 text-xs">
+                  #OpenSource
+                </span>
+              </div>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Open-source RAG platform using pgvector.
+            </p>
+          </div>
+
+          {/* MCP Server Card */}
+          <div className="rounded-2xl shadow-md border bg-card p-6 flex flex-col gap-3">
+            <div className="flex flex-col gap-2">
+              <h3 className="font-semibold">
+                <a
+                  href="https://www.supavec.com/blog/supavec-mcp-server"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline"
+                >
+                  MCP Server
+                </a>
+              </h3>
+              <div className="flex flex-wrap gap-1">
+                <span className="rounded-full bg-gray-100 dark:bg-gray-800 px-2 py-0.5 text-xs">
+                  #MCP
+                </span>
+                <span className="rounded-full bg-gray-100 dark:bg-gray-800 px-2 py-0.5 text-xs">
+                  #RAG
+                </span>
+                <span className="rounded-full bg-gray-100 dark:bg-gray-800 px-2 py-0.5 text-xs">
+                  #OpenSource
+                </span>
+              </div>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              MCP server streaming Supabase-secured RAG data to LLMs.
+            </p>
+          </div>
+
+          {/* Launch Week 14 Winner Card */}
+          <div className="rounded-2xl shadow-md border bg-card p-6 flex flex-col gap-3">
+            <div className="flex flex-col gap-2">
+              <h3 className="font-semibold">
+                <a
+                  href="https://x.com/supabase/status/1909552555333398630"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline"
+                >
+                  CiteAnalytics
+                </a>
+              </h3>
+              <div className="flex flex-wrap gap-1">
+                <span className="rounded-full bg-gray-100 dark:bg-gray-800 px-2 py-0.5 text-xs">
+                  #OpenSource
+                </span>
+                <span className="rounded-full bg-gray-100 dark:bg-gray-800 px-2 py-0.5 text-xs">
+                  #Hackathon
+                </span>
+              </div>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Supabase hackathon winning AI citation analytics app.
+            </p>
+          </div>
+        </div>
+      </section>
 
       <iframe
         src="https://airtable.com/embed/appIrznU5cXdfKBMF/shrh5TKqd6RvcHOpv?layout=card"

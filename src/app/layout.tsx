@@ -59,8 +59,9 @@ export default function RootLayout({
                     Canada.
                   </span>
                   <p>
-                    Supabase hackathon winner shipping AI tools to 19K+ users.
-                    Two of them were ranked as the{" "}
+                    Full-stack dev shipping AI infrastructure & tools to 18K+
+                    users (Supabase hackathon winner). Two of them were ranked
+                    as the{" "}
                     <a
                       href="https://www.producthunt.com/products/supavec#supavec"
                       target="_blank"
