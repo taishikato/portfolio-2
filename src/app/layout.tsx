@@ -59,8 +59,8 @@ export default function RootLayout({
                     Canada.
                   </span>
                   <p>
-                    I&apos;ve built and shipped AI/non-AI products with over 18K
-                    users. Two of them were ranked as the{" "}
+                    Supabase hackathon winner shipping AI tools to 19K+ users.
+                    Two of them were ranked as the{" "}
                     <a
                       href="https://www.producthunt.com/products/supavec#supavec"
                       target="_blank"
