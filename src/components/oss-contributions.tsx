@@ -2,6 +2,10 @@ import { Card, CardDescription, CardHeader } from "@/components/ui/card";
 
 const list = [
   {
+    title: "Pull Request #137 · langchain-ai/langchain-community",
+    url: "https://github.com/langchain-ai/langchain-community/pull/137",
+  },
+  {
     title: "Pull Request #30 · ueberdosis/tiptap-docs",
     url: "https://github.com/ueberdosis/tiptap-docs/pull/30",
   },
