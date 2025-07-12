@@ -8,6 +8,7 @@ import { Footer } from "@/components/footer";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { WorkExperience } from "@/components/work-experience";
 import { OssContributions } from "@/components/oss-contributions";
+import { OssProjects } from "@/components/oss-projects";
 import { FaLocationArrow } from "react-icons/fa";
 import ProfileImage from "../assets/profile.webp";
 import Script from "next/script";
@@ -91,6 +92,8 @@ export default function RootLayout({
               <HackathonWins />
 
               <OssContributions />
+
+              <OssProjects />
             </article>
             <Footer />
           </main>
