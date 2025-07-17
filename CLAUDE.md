@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a personal portfolio website built with Next.js 15, featuring a blog system, project showcase, and static site generation. The site is configured for static export and includes MDX support for blog content.
+This is a personal portfolio website built with Next.js 15 and React 19, featuring a blog system, project showcase, and static site generation. The site is configured for static export and includes MDX support for blog content.
 
 ## Common Commands
 
@@ -76,3 +76,10 @@ npm run lint         # Run ESLint
 - App router with TypeScript support
 - Dynamic routes use proper async/await patterns for params
 - Static params generation for blog posts
+
+### Dependencies & Overrides
+- **React 19**: Uses explicit overrides in package.json for React 19.0.0
+- **MDX Integration**: @next/mdx, @mdx-js/loader, @mdx-js/react for MDX support
+- **Markdown Processing**: gray-matter, react-markdown, rehype-highlight, remark-gfm
+- **UI Components**: shadcn/ui with Radix UI primitives and Lucide React icons
+- **Theme Management**: next-themes for dark mode support
