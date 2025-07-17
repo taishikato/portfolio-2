@@ -7,9 +7,15 @@ const list = [
     description: "The open-source RAG platform.",
   },
   {
-    title: "MCP Server",
+    title: "@supavec/mcp-server",
     url: "https://github.com/supavec/mcp-server",
     description: "MCP server for Supavec",
+  },
+  {
+    title: "@supavec/supabase-ai",
+    url: "https://github.com/supavec/supabase-ai",
+    description:
+      "TypeScript SDK for building RAG applications with Supabase + pgvector",
   },
   {
     title: "ChatSage",
