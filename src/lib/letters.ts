@@ -1,8 +1,8 @@
-export interface Letter {
+export type Letter = {
   title: string;
   slug: string;
   url: string;
-}
+};
 
 export const letters: Letter[] = [
   {
