@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { letters } from "@/lib/letters";
+import type { Metadata } from "next";
 
 interface LetterPageProps {
   params: Promise<{ slug: string }>;
@@ -10,6 +11,21 @@ export async function generateStaticParams() {
   return letters.map((letter) => ({
     slug: letter.slug,
   }));
+}
+
+export async function generateMetadata({ params }: LetterPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const letter = letters.find((l) => l.slug === slug);
+  
+  if (!letter) {
+    return {
+      title: "Letter Not Found",
+    };
+  }
+  
+  return {
+    title: letter.title,
+  };
 }
 
 export default async function LetterPage({ params }: LetterPageProps) {
