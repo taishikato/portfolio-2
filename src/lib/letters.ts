@@ -7,7 +7,7 @@ export type Letter = {
 export const letters: Letter[] = [
   {
     title: "Your happiness ≠ How the business is doing",
-    slug: "your-happiness-how-the-business-is-doing",
+    slug: "your-happiness-and-business",
     url: "https://taishi.substack.com/p/your-happiness-how-the-business-is",
   },
 ];
