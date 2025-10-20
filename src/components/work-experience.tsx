@@ -1,9 +1,29 @@
+import SupabaseIcon from "../assets/supabase.webp";
 import WhisperitIcon from "../assets/whisperit.webp";
 import SemiosIcon from "../assets/semios.webp";
 import YahooIcon from "../assets/yahoo.webp";
 import BtraxIcon from "../assets/btrax.webp";
 
 const list = [
+  {
+    icon: SupabaseIcon.src,
+    company: "Supabase",
+    title: "Frontend Developer (contract)",
+    years: "Jul 2025 - Sep 2025",
+    place: "Remote",
+    description: (
+      <div className="font-normal">
+        Here are{" "}
+        <a
+          target="_blank"
+          href="https://github.com/supabase/supabase/issues?q=author%3Ataishikato"
+          className="text-primary hover:underline"
+        >
+          my PRs
+        </a>
+      </div>
+    ),
+  },
   {
     icon: WhisperitIcon.src,
     company: "Whisperit",
@@ -61,6 +81,11 @@ export const WorkExperience = () => {
                     <span className="hidden md:block">-</span>
                     <span className="text-xs md:text-sm">{l.place}</span>
                   </div>
+                  {l.description && (
+                    <div className="mt-2 pt-2 border-t border-dashed text-sm text-foreground/90">
+                      {l.description}
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="font-normal text-sm">{l.years}</div>
