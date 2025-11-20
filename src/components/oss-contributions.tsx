@@ -2,6 +2,10 @@ import { Card, CardDescription, CardHeader } from "@/components/ui/card";
 
 const list = [
   {
+    title: "Pull Request #79 · supabase/embeddings-generator",
+    url: "https://github.com/supabase/embeddings-generator/pull/79",
+  },
+  {
     title: "Pull Request #137 · langchain-ai/langchain-community",
     url: "https://github.com/langchain-ai/langchain-community/pull/137",
   },
